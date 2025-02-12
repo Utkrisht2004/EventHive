@@ -1,5 +1,5 @@
 # Create your views here.
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Event, Registration
 from django.contrib.auth.decorators import login_required
 
@@ -9,6 +9,6 @@ def event_list(request):
 
 @login_required
 def register_for_event(request, event_id):
-    event = Event.objects.get(id=event_id)
+    event = get_object_or_404(Event, id=event_id)
     Registration.objects.create(event=event, attendee=request.user)
-    return redirect('event_list')
+    return redirect('event-list')
