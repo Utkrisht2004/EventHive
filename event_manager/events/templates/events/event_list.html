@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event List</title>
+</head>
+<body>
+    <h1>Available Events</h1>
+    <ul>
+        {% for event in events %}
+            <li>
+                {{ event.title }} - {{ event.date }}
+                {% if user.is_authenticated %}
+                    <a href="{% url 'register_for_event' event.id %}">Register</a>
+                {% else %}
+                    <a href="/admin/login/">Login to Register</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
