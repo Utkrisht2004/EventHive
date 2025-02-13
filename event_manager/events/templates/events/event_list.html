@@ -9,15 +9,16 @@
     <h1>Available Events</h1>
     <ul>
         {% for event in events %}
-            <li>
-                {{ event.title }} - {{ event.date }}
-                {% if user.is_authenticated %}
-                    <a href="{% url 'register_for_event' event.id %}">Register</a>
-                {% else %}
-                    <a href="/admin/login/">Login to Register</a>
-                {% endif %}
-            </li>
-        {% endfor %}
+    <li>
+        {{ event.title }} - {{ event.date }}
+        {% if user.is_authenticated %}
+            <a href="{% url 'register_for_event' event.id %}">Register</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login to Register</a>
+        {% endif %}
+    </li>
+{% endfor %}
+
     </ul>
 </body>
 </html>
